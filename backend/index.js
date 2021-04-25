@@ -137,6 +137,7 @@ function processMovie(movieId) {
 
 // checks every hour
 setInterval(() => {
+  console.log(`Checking....`);
   for (const movieId of config.WATCHLIST) {
     processMovie(movieId)
       .then(() => {
@@ -144,6 +145,7 @@ setInterval(() => {
       })
       .catch((err) => console.error(err));
   }
+  console.log("Checks complete.");
 }, 3.6e6);
 
 // testing
