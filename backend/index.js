@@ -135,27 +135,31 @@ function processMovie(movieId) {
   });
 }
 
-// setInterval(() => {
-//   for (const movieId of config.WATCHLIST) {
-//     processMovie(movieId)
-//       .then(() => {
-//         console.debug(`Finished processing movieid ${movieId}`);
-//       })
-//       .catch((err) => console.error(err));
-//   }
-// }, 300000);
-var movieId = "436969";
-getMovie(movieId)
-  .then(async (movieData) => {
-    notify(movieData)
+// checks every hour
+setInterval(() => {
+  for (const movieId of config.WATCHLIST) {
+    processMovie(movieId)
       .then(() => {
-        console.log("Done");
+        console.debug(`Finished processing movieid ${movieId}`);
       })
-      .catch((err) => {
-        console.error(err);
-      });
-  })
-  .catch((err) => {
-    console.error(`Error fetching data for movie ${movieId}! ${err}`);
-    return;
-  });
+      .catch((err) => console.error(err));
+  }
+}, 3.6e6);
+
+// testing
+
+// var movieId = "436969";
+// getMovie(movieId)
+//   .then(async (movieData) => {
+//     notify(movieData)
+//       .then(() => {
+//         console.log("Done");
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//       });
+//   })
+//   .catch((err) => {
+//     console.error(`Error fetching data for movie ${movieId}! ${err}`);
+//     return;
+//   });
